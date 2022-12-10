@@ -6,6 +6,9 @@
 ## Install dependencies
 `yarn`
 
+## Enter private keys for deployment
+`cp .env.sample .env`
+
 ## Compile contracts
 `yarn compile`
 
