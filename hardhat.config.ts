@@ -72,6 +72,9 @@ const config: HardhatUserConfig = {
     cache: "./cache",
     artifacts: "./artifacts",
   },
+  mocha: {
+    timeout: 100000000
+  }
   // abiExporter: {
   //   path: "./data/abi",
   //   clear: true,
