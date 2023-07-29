@@ -10,11 +10,15 @@ const main = async () => {
   // Sanity checks
   if (networkName === "mainnet") {
     if (!process.env.KEY_MAINNET) {
-      throw new Error("Missing private key, refer to README 'Deployment' section");
+      throw new Error(
+        "Missing private key, refer to README 'Deployment' section"
+      );
     }
   } else if (networkName === "testnet") {
     if (!process.env.KEY_TESTNET) {
-      throw new Error("Missing private key, refer to README 'Deployment' section");
+      throw new Error(
+        "Missing private key, refer to README 'Deployment' section"
+      );
     }
   }
 
@@ -22,12 +26,12 @@ const main = async () => {
 
   console.log("Deploying to network:", networkName);
 
-  console.log("Deploying AbbikaFactory..");
-  const abbikaFactory = await ethers.getContractFactory("AbbikaFactory");
-  const factory = await abbikaFactory.deploy(deployer.address);
+  console.log("Deploying PlunderFactory..");
+  const plunderFactory = await ethers.getContractFactory("PlunderFactory");
+  const factory = await plunderFactory.deploy(deployer.address);
   await factory.deployed();
 
-  console.log("AbbikaFactory deployed to:", factory.address);
+  console.log("PlunderFactory deployed to:", factory.address);
 
   console.log("Deploying Wrapped ZIL..");
   const wrappedZIL = await ethers.getContractFactory("WZIL");
@@ -36,28 +40,27 @@ const main = async () => {
 
   console.log("Wrapped ZIL deployed to:", wzil.address);
 
-  console.log("Deploying AbbikaRouter..");
-  const abbikaRouter = await ethers.getContractFactory("AbbikaRouter");
-  const router = await abbikaRouter.deploy(factory.address, wzil.address);
+  console.log("Deploying PlunderRouter..");
+  const plunderRouter = await ethers.getContractFactory("PlunderRouter");
+  const router = await plunderRouter.deploy(factory.address, wzil.address);
   await router.deployed();
 
-  console.log("AbbikaRouter deployed to:", router.address);
-  
+  console.log("PlunderRouter deployed to:", router.address);
 
-  // Deploy AbbikaZapV1
-  console.log("Deploying AbbikaZap V1..");
+  // Deploy PlunderZapV1
+  console.log("Deploying PlunderZap V1..");
 
-  const AbbikaZapV1 = await ethers.getContractFactory("AbbikaZapV1");
+  const PlunderZapV1 = await ethers.getContractFactory("PlunderZapV1");
 
-  const abbikaZap = await AbbikaZapV1.deploy(
+  const plunderZap = await PlunderZapV1.deploy(
     wzil.address,
     router.address,
     50
   );
 
-  await abbikaZap.deployed();
+  await plunderZap.deployed();
 
-  console.log("AbbikaZap V1 deployed to:", abbikaZap.address);
+  console.log("PlunderZap V1 deployed to:", plunderZap.address);
 };
 
 main()
