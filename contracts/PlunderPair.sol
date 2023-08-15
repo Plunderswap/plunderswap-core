@@ -113,7 +113,7 @@ contract PlunderPair is IPlunderPair, PlunderERC20 {
     emit Sync(reserve0, reserve1);
   }
 
-  // if fee is on, mint liquidity equivalent to 8/25 of the growth in sqrt(k)
+  // if fee is on, mint liquidity equivalent to 15/35 of the growth in sqrt(k)
   function _mintFee(
     uint112 _reserve0,
     uint112 _reserve1
@@ -126,8 +126,8 @@ contract PlunderPair is IPlunderPair, PlunderERC20 {
         uint rootK = Math.sqrt(uint(_reserve0).mul(_reserve1));
         uint rootKLast = Math.sqrt(_kLast);
         if (rootK > rootKLast) {
-          uint numerator = totalSupply.mul(rootK.sub(rootKLast)).mul(8);
-          uint denominator = rootK.mul(17).add(rootKLast.mul(8));
+          uint numerator = totalSupply.mul(rootK.sub(rootKLast)).mul(15);
+          uint denominator = rootK.mul(20).add(rootKLast.mul(15));
           uint liquidity = numerator / denominator;
           if (liquidity > 0) _mint(feeTo, liquidity);
         }
@@ -240,8 +240,8 @@ contract PlunderPair is IPlunderPair, PlunderERC20 {
     );
     {
       // scope for reserve{0,1}Adjusted, avoids stack too deep errors
-      uint balance0Adjusted = (balance0.mul(10000).sub(amount0In.mul(25)));
-      uint balance1Adjusted = (balance1.mul(10000).sub(amount1In.mul(25)));
+      uint balance0Adjusted = (balance0.mul(10000).sub(amount0In.mul(35)));
+      uint balance1Adjusted = (balance1.mul(10000).sub(amount1In.mul(35)));
       require(
         balance0Adjusted.mul(balance1Adjusted) >=
           uint(_reserve0).mul(_reserve1).mul(10000 ** 2),
