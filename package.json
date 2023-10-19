@@ -1,0 +1,39 @@
+{
+  "name": "plunderswap-core",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "compile": "npx hardhat compile",
+    "deploy:testnet": "npx hardhat run --network testnet scripts/deploy.ts",
+    "deploy:mainnet": "npx hardhat run --network mainnet scripts/deploy.ts",
+    "test": "npx hardhat test",
+    "test:coverage": "npx hardhat coverage",
+    "test:size-contracts": "npx hardhat size-contracts",
+    "format:check": "prettier --check '**/*.{js,ts,sol}'",
+    "format:write": "prettier --write '**/*.{js,ts,sol}'"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.2.1",
+    "@nomiclabs/hardhat-truffle5": "^2.0.7",
+    "@nomiclabs/hardhat-web3": "^2.0.0",
+    "@openzeppelin/contracts": "^4.2.0",
+    "@openzeppelin/test-helpers": "^0.5.16",
+    "@types/chai": "^4.3.4",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^18.11.11",
+    "@uniswap/lib": "4.0.1-alpha",
+    "chai": "^4.3.7",
+    "dotenv": "^16.0.3",
+    "ethers": "^5.7.2",
+    "hardhat": "^2.12.3",
+    "hardhat-abi-exporter": "^2.10.1",
+    "hardhat-contract-sizer": "^2.6.1",
+    "prettier": "^2.8.1",
+    "prettier-plugin-solidity": "^1.0.0",
+    "solidity-coverage": "^0.8.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.4",
+    "web3": "^1.8.1"
+  }
+}
