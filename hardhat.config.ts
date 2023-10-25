@@ -6,6 +6,7 @@ import "hardhat-abi-exporter";
 import "hardhat-contract-sizer";
 import "solidity-coverage";
 import "dotenv/config";
+import "@xtools-at/hardhat-sourcify";
 
 const zilliqaMainnet: NetworkUserConfig = {
   url: "https://api.zilliqa.com/",
@@ -28,6 +29,15 @@ const config: HardhatUserConfig = {
   },
   solidity: {
     compilers: [
+      {
+        version: "0.8.12",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 99999,
+          },
+        },
+      },
       {
         version: "0.8.4",
         settings: {

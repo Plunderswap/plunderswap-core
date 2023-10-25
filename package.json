@@ -23,6 +23,7 @@
     "@types/mocha": "^10.0.1",
     "@types/node": "^18.11.11",
     "@uniswap/lib": "4.0.1-alpha",
+    "@xtools-at/hardhat-sourcify": "^0.2.0",
     "chai": "^4.3.7",
     "dotenv": "^16.0.3",
     "ethers": "^5.7.2",
